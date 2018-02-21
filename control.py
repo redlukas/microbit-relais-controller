@@ -11,18 +11,21 @@ def incrementer():
 incrementer()
 
 
-while counter % scnCount = 0
+if counter % scnCount == 0:
 	pin2.write_digital(0)
 	display.scroll("off")
 	
-while counter % scnCount = 1
+elif counter % scnCount == 1:
 	pin2.write_digital(1)
 	display.scroll("on")
 
-while counter % scnCount = 2
+elif counter % scnCount == 2:
 	pin2.write_digital(1)
 	sleep(500)
 	pin2.write_digital(0)
 	sleep(500)
 	display.scroll("blink")
+
+else:
+	display.scroll("?")
 
