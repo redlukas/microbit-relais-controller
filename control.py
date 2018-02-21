@@ -1,38 +1,35 @@
 from microbit import *
 
-counter = 0
-
+counter = button_a.get_presses
 scnCount = 3
-
-
 
 def off():
 	pin2.write_digital(0)
-	display.scroll("off")
-	counter = button_a.get_presses + counter
+	display.scroll("0")
+	counter = counter + button_a.get_presses
 	
 def on():
 	pin2.write_digital(1)
-	display.scroll("on")
-	counter = button_a.get_presses + counter
+	display.scroll("1")
+	counter = counter + button_a.get_presses
 
 def blink():
 	pin2.write_digital(1)
 	sleep(500)
 	pin2.write_digital(0)
 	sleep(500)
-	display.scroll("blink")
-	counter = button_a.get_presses + counter
+	display.scroll("B")
+	counter = counter + button_a.get_presses
 	
-while true:
-	if counter % scnCount == 0:
-	off()
+while True:
+	if counter == 0:
+		off()
 	
-	elif counter % scnCount == 1:
+	elif counter == 1:
 		on()
 
-	elif counter % scnCount == 2:
+	elif counter == 2:
 		blink()
 
 	else:
-		display.scroll("ka")
+		display.scroll("k")
