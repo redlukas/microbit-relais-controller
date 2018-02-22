@@ -21,5 +21,7 @@ input.onButtonPressed(Button.AB, () => {
     pins.digitalWritePin(DigitalPin.P2, 1)
     control.waitMicros(500)
     pins.digitalWritePin(DigitalPin.P2, 0)
+    control.waitMicros(500)
+    basic.showString("0")
 })
 basic.showString("GO!")
