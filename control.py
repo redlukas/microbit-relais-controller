@@ -24,14 +24,4 @@ def blink():
 	display.scroll("B")
 	counter = counter + button_a.get_presses
 
-while counter == 0:
-	off()
-
-while counter == 1:
-	on()
-
-while counter == 2:
-	blink()
-
-if counter > 2:
-	counter = 0
+scenes = {0 : off, 1 : on, 2 : blink}
