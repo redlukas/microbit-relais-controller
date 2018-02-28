@@ -55,18 +55,18 @@ scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink}
 
 
 while True:
-	if counter >= len(scenes):
+	if counter >= len(scenes):				#reset the counter, if all scenes have been played
         	counter = 0
-	scenes[counter]()
-	now = counter
-	while now == counter:
+	scenes[counter]()					#rocknroll
+	now = counter						#so we know what we are playing
+	while now == counter:			
 		scenes[counter]()
 		print "waiting" + "\r",
-		input_state = GPIO.input(inPin)
+		input_state = GPIO.input(inPin)			#listen for the press of a button
 		if input_state == True:
-			counter = counter + 1
+			counter = counter + 1			#increment the counter on buttonpress
 			time.sleep(1)
 			print " "
-			break
+			break					
 
    
