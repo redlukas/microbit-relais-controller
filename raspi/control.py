@@ -36,18 +36,6 @@ def fastblink():
 	time.sleep(0.5)
 	GPIO.output(outPin,GPIO.HIGH)
 	time.sleep(0.1)
-	GPIO.output(outPin,GPIO.LOW)
-	time.sleep(0.5)
-	GPIO.output(outPin,GPIO.HIGH)
-	time.sleep(0.1)
-	GPIO.output(outPin,GPIO.LOW)
-	time.sleep(0.5)
-	GPIO.output(outPin,GPIO.HIGH)
-	time.sleep(0.1)
-	GPIO.output(outPin,GPIO.LOW)
-	time.sleep(0.5)
-	GPIO.output(outPin,GPIO.HIGH)
-	time.sleep(0.1)
 
 ###list containing the scenes, remember to add your scenes here
 scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink}
