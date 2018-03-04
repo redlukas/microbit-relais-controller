@@ -9,21 +9,21 @@ outPin=2
 ###functions for the different scenes
 def off():
 	pin2.write_digital(0)
-	display.scroll("0")
+	display.show("0")
 
 def on():
 	pin2.write_digital(1)
-	display.scroll("1")
+	display.show("1")
 
 def blink():
-	display.scroll("b")
+	display.show("b")
 	pin2.write_digital(0)
 	sleep(500)
 	pin2.write_digital(1)
 	sleep(500)
 
 def fastblink():
-	display.scroll("B")
+	display.show("B")
 	pin2.write_digital(0)
 	sleep(500)
 	pin2.write_digital(1)
