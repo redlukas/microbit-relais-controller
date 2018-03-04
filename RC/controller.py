@@ -1,7 +1,18 @@
 from microbit import *
 
+###set up radio
+def radioOn ():
+    import radio
+    radio.RATE_1MBIT
+    radio.on()
+    radio.config()
+	
+def radioOff ():
+    radio.off()	
+
 ###initialise variables
 counter = 0
+radioState = 0
 
 ###set the GPIO in/output pin
 outPin=2
@@ -49,6 +60,14 @@ while True:
 	now = counter						#so we know what we are playing
 	while now == counter:			
 		scenes[counter](i)			
-		if button_a.was_pressed() == True:		#listen for the press of a button
+		if button_a.was_pressed() == True or radio.recieve() == "B":		#listen for the press of a button
 			counter = counter + 1			#increment the counter on buttonpress
 			break
+		elif button_a.was_pressed() and button_b.was_pressed() == True:
+		    radioState = radioState + 1
+			if radioState % 2 == 0:
+			    radioOff()
+			elif radioState % 2 == 1:
+			    radioOn()
+		elif button_b.was_pressed() == True:
+		    radio.send("B")
