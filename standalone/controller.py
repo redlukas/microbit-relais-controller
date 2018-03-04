@@ -1,27 +1,46 @@
 from microbit import *
 
-counter = button_a.get_presses
-scnCount = 3
+counter = 0
 
+###set the GPIO in/output pin
+outPin=2
+
+
+###functions for the different scenes
 def off():
-	global counter
 	pin2.write_digital(0)
 	display.scroll("0")
-	counter = counter + button_a.get_presses
 
 def on():
-	global counter
 	pin2.write_digital(1)
 	display.scroll("1")
-	counter = counter + button_a.get_presses
 
 def blink():
-	global counter
-	pin2.write_digital(1)
-	sleep(500)
+	display.scroll("b")
 	pin2.write_digital(0)
 	sleep(500)
-	display.scroll("B")
-	counter = counter + button_a.get_presses
+	pin2.write_digital(1)
+	sleep(500)
 
-scenes = {0 : off, 1 : on, 2 : blink}
+def fastblink():
+	display.scroll("B")
+	pin2.write_digital(0)
+	sleep(500)
+	pin2.write_digital(1)
+	sleep(1000)
+
+###list containing the scenes, remember to add your scenes here
+scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink}
+
+
+
+while True:
+	if counter >= len(scenes):				#reset the counter if all scenes have been played
+        	counter = 0
+	scenes[counter]()					#rocknroll
+	now = counter						#so we know what we are playing
+	while now == counter:			
+		scenes[counter]()			
+		if button_a.was_pressed() == True:		#listen for the press of a button
+			counter = counter + 1			#increment the counter on buttonpress
+			break
