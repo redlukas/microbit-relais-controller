@@ -60,14 +60,14 @@ while True:
 	now = counter						#so we know what we are playing
 	while now == counter:			
 		scenes[counter](i)			
-		if button_a.was_pressed() == True or radio.recieve() == "B":		#listen for the press of a button
+		if button_a.was_pressed() == True or radio.recieve() == "B":		#listen for the press of a button OR the Reception of a signal
 			counter = counter + 1			#increment the counter on buttonpress
 			break
-		elif button_a.was_pressed() and button_b.was_pressed() == True:
+		elif button_a.was_pressed() and button_b.was_pressed() == True:		#Toggle Radio states on A+B Press
 		    radioState = radioState + 1
 			if radioState % 2 == 0:
 			    radioOff()
 			elif radioState % 2 == 1:
 			    radioOn()
-		elif button_b.was_pressed() == True:
+		elif button_b.was_pressed() == True:					#send the signal to the other Microbit
 		    radio.send("B")

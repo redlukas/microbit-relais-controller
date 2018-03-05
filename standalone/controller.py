@@ -30,7 +30,7 @@ def fastblink(i):
 	pin2.write_digital(1)
 	sleep(150)
 
-def fadeinout(i):
+def fadeinout(i):					###DO NOT USE WITH A RELAIS, ONLY MOSFET
     display.show("f")
     for i in range (0, 1023):
         pin2.write_analog(i)
