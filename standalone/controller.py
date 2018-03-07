@@ -2,6 +2,7 @@ from microbit import *
 
 ###initialise variables
 counter = 0
+i=0
 
 ###set the GPIO in/output pin
 outPin=2
@@ -32,10 +33,12 @@ def fastblink(i):
 
 def fadeinout(i):					###DO NOT USE WITH A RELAIS, ONLY MOSFET
     display.show("f")
-    for i in range (0, 1023):
+    for i in range (250, 1023):
         pin2.write_analog(i)
-    for i in range (1023, 0):
+        sleep(120)
+    for i in range (1023, 250):
         pin2.write_analog(i)
+        sleep(120)
 
 ###list containing the scenes, remember to add your scenes here
 scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink, 4 : fadeinout}
@@ -45,7 +48,7 @@ scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink, 4 : fadeinout}
 while True:
 	if counter >= len(scenes):				#reset the counter if all scenes have been played
         	counter = 0
-	scenes[counter](i)					#rocknroll
+	scenes[counter](i)
 	now = counter						#so we know what we are playing
 	while now == counter:			
 		scenes[counter](i)			
