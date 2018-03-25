@@ -1,18 +1,11 @@
 from microbit import *
-
-###set up radio
-def radioOn ():
-    import radio
-    radio.RATE_1MBIT
-    radio.on()
-    radio.config()
-	
-def radioOff ():
-    radio.off()	
+import radio
+radio.RATE_250KBIT
+radio.on()
 
 ###initialise variables
 counter = 0
-radioState = 0
+i=0
 
 ###set the GPIO in/output pin
 outPin=2
@@ -41,12 +34,14 @@ def fastblink(i):
 	pin2.write_digital(1)
 	sleep(150)
 
-def fadeinout(i):
+def fadeinout(i):					###DO NOT USE WITH A RELAIS, ONLY MOSFET
     display.show("f")
-    for i in range (0, 1023):
+    for i in range (250, 1023):
         pin2.write_analog(i)
-    for i in range (1023, 0):
+        sleep(120)
+    for i in range (1023, 250):
         pin2.write_analog(i)
+        sleep(120)
 
 ###list containing the scenes, remember to add your scenes here
 scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink, 4 : fadeinout}
@@ -56,18 +51,13 @@ scenes = {0 : off, 1 : on, 2 : blink, 3 : fastblink, 4 : fadeinout}
 while True:
 	if counter >= len(scenes):				#reset the counter if all scenes have been played
         	counter = 0
-	scenes[counter](i)					#rocknroll
+	scenes[counter](i)
 	now = counter						#so we know what we are playing
 	while now == counter:			
 		scenes[counter](i)			
-		if button_a.was_pressed() == True or radio.recieve() == "B":		#listen for the press of a button OR the Reception of a signal
+		if button_a.was_pressed() == True:		#listen for the press of a button
 			counter = counter + 1			#increment the counter on buttonpress
 			break
-		elif button_a.was_pressed() and button_b.was_pressed() == True:		#Toggle Radio states on A+B Press
-		    radioState = radioState + 1
-			if radioState % 2 == 0:
-			    radioOff()
-			elif radioState % 2 == 1:
-			    radioOn()
-		elif button_b.was_pressed() == True:					#send the signal to the other Microbit
-		    radio.send("B")
+		if radio.recieve() == "a":
+			counter = counter + 1
+			break
