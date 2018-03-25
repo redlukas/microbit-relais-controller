@@ -58,6 +58,7 @@ while True:
 		if button_a.was_pressed() == True:		#listen for the press of a button
 			counter = counter + 1			#increment the counter on buttonpress
 			break
-		if radio.recieve() == "a":
+		incoming = radio.receive()
+        if incoming == "a":
 			counter = counter + 1
 			break
