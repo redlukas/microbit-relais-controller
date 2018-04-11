@@ -59,6 +59,6 @@ while True:
 			counter = counter + 1			#increment the counter on buttonpress
 			break
 		incoming = radio.receive()
-        if incoming == "a":
+                if incoming == "a":
 			counter = counter + 1
 			break
