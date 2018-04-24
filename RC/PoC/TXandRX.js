@@ -1,0 +1,15 @@
+radio.onDataPacketReceived(({ receivedNumber }) => {
+    pins.digitalWritePin(DigitalPin.P2, 1)
+    basic.showNumber(1)
+    basic.pause(500)
+    pins.digitalWritePin(DigitalPin.P2, 0)
+    basic.showNumber(0)
+})
+input.onButtonPressed(Button.A, () => {
+    radio.sendNumber(1)
+    basic.showString("T")
+    basic.pause(500)
+    basic.showNumber(0)
+})
+basic.showString("Ready!")
+basic.showNumber(0)
